@@ -56,7 +56,7 @@ FullResults = {}
 URLPrefix = "https://attackevals.mitre-engenuity.org/"
 URLSuffix = ".1_Results.json"
 Debug = False
-Download = False
+Download = True
 
 
 def downloadFiles():
@@ -158,25 +158,25 @@ L1 = D.items()
 L1 = sorted(L1, key=operator.itemgetter(1), reverse=True)
 
 x = 0
-x_value = [] * len(L1)
-y_value = [] * len(L1)
+x_value = ["0"] * len(L1)
+y_value = [0] * len(L1)
 # print(str(L1[0][0]))
 
 #x_value[0] = 1
 
 for result in L1:
-    #x_value[x] = result[0]
-    print("result[0] is " + str(result[0]))
-    #y_value = result[1]
-    print("result[1] is " + str(result[1]))
-    print("x is " + str(x))
+    x_value[x] = result[0]
+    #print("result[0] is " + str(result[0]))
+    y_value[x] = result[1]
+    #print("result[1] is " + str(result[1]))
+    #print("x is " + str(x))
     x += 1
 
-#plt.bar(x_value, y_value, align='center')
-#print("x is: " + x_value)
+plt.bar(x_value, y_value, align='center')
+
 
 plt.xlabel("Company")
 plt.ylabel("Detections")
 plt.title("Detections by Company")
-#plt.xticks(range(len(L1)), y_value, rotation='vertical')
-#plt.show()
+plt.xticks(range(len(L1)), x_value, rotation='vertical')
+plt.show()
